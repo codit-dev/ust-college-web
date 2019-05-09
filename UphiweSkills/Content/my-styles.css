@@ -1,0 +1,109 @@
+/*CUSTOM Bootrap Image Uploader*/
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+/*//CUSTOM Bootrap Image Uploader*/
+
+/*CUSTOM Text overflow with elipses*/
+/* styles for '...' */ 
+.block-with-text {
+  /* hide text if it more than N lines  */
+  overflow: hidden;
+  /* for set '...' in absolute position */
+  position: relative; 
+  /* use this value to count block height */
+  line-height: 1.2em;
+  /* max-height = line-height (1.2) * lines max number (3) */
+  max-height: 3.6em; 
+  /* fix problem when last visible word doesn't adjoin right side  */
+  text-align: justify;  
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+/* create the ... */
+.block-with-text:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 0;
+  bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  /* bg color = bg color under block */
+  background: white;
+}
+
+#video_player {
+	display: table;
+	line-height: 0;
+	font-size: 0;
+	background: #000;
+}
+#video_player video,
+	#video_player figcaption {
+		display: table-cell;
+		vertical-align: top;
+}
+#video_player figcaption {
+	width: 25%;
+}
+#video_player figcaption a {
+	display: block;
+	opacity: .5;
+	transition: 1s opacity;
+}
+#video_player figcaption a img,
+	figure video {
+		width: 100%;
+		height: auto;
+}
+#video_player figcaption a:hover {
+	opacity: 1;
+}
+
+@media (max-width: 700px) 
+{
+	#video_player video, #video_player figcaption {display: table-row;}
+    #video_player figcaption a {display: inline-block; width: 33.33%;}
+}
+
+
+/**For home page testimonials*/
+@media (min-width: 992px){
+    .home-page .testimonials .carousel .item .quote-padder {
+        min-height: 150px;
+    }
+}

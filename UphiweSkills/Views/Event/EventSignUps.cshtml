@@ -1,0 +1,53 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<UphiweSkills.Models.EventSignUpViewModel>
+@{
+    ViewBag.Title = ViewBag.EventTitle;
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">@ViewBag.EventTitle</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="/Home/Index">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li><a href="/Event/Events">Events</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">Sign Ups</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+
+        <div class="page-content">
+            <div class="row">
+
+                <table class="table table-boxed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var eventSignUp in Model)
+                        {
+                            <tr>
+                                <td>@eventSignUp.Id</td>
+                                <td>@eventSignUp.Name</td>
+                                <td>@eventSignUp.Surname</td>
+                                <td>@eventSignUp.Email</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div><!--//row-->
+        </div><!--//page-content-->
+
+        Page @(Model.PageCount <Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("EventSignUps", "Event", new { page }))
+    </div><!--//page wrapper-->
+</div><!--//content-->

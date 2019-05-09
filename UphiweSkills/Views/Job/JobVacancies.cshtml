@@ -1,0 +1,80 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<UphiweSkills.Models.JobVacancySnippetViewModel>
+@{
+    ViewBag.Title = "Job Vacancies";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title float-left">Job Vacancies</h1>
+            <div class="breadcrumbs float-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="@Url.Action("Index","Home")">Home</a><i class="fas fa-angle-right"></i></li>
+                    <li class="current">Job Vacancies</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="jobs-wrapper col-lg-8 col-md-7 col-12">
+                @foreach (var jobVacancy in Model ) {
+                    <div class="card page-row">
+                        <div class="card-header">
+                                                                                                            <!-- badge badge-success float-right -->
+                            <h3 class="card-title"><a href="@Url.Action("JobVacancy","Job", new { id = jobVacancy.Id })">@jobVacancy.JobTitle</a> <span class="@jobVacancy.EmpTypeClasses">@jobVacancy.EmploymentType</span></h3>
+
+                        </div>
+                        <div class="card-body">
+                            @jobVacancy.JobDescriptionSnippet
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Department:</strong> @jobVacancy.Department</li>
+                            <li class="list-group-item"><strong>Salary:</strong> @jobVacancy.Salary</li>
+                        </ul>
+                        <div class="card-footer">
+                            <div class="row">
+                                <ul class="list-inline col-md-8 col-sm-6 col-xs-6">
+                                    <li><a href="@Url.Action("JobVacancy","Job", new { id = jobVacancy.Id })">More details</a></li>
+                                </ul>
+                                <div class="meta col-md-4 col-sm-6 col-xs-6 text-right">
+                                    <small>@jobVacancy.DatePosted</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--//panel-->
+                }
+                    <nav class="pagination-container text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("JobVacancies", "Job", new { page }),
+                           new PagedListRenderOptions(){
+                               LinkToPreviousPageFormat = "&laquo;",
+                               LinkToNextPageFormat = "&raquo;",
+                               UlElementClasses = new List<string> { "pagination" },
+                               LiElementClasses = new List<string> { "page-item" },
+                               PageClasses = new List<string> { "page-link" }
+                           }
+                       )<!--//pagination-->
+                    </nav>
+                </div><!--//jobs-wrapper-->
+
+                <aside class="page-sidebar  col-lg-3 offset-lg-1 col-md-4 offset-md-1">
+                    <section class="widget has-divider">
+                        <h3 class="title">Interview Tips</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/aAHKkBxrVoY?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen=""></iframe>
+                        </div>
+                    </section><!--//widget-->
+                    <section class="widget">
+                        <h3 class="title">Contact</h3>
+                        <p>We’d love to hear from you. Feel free to contact us! </p>
+                        <p class="tel"><i class="fa fa-phone"></i>Tel: 031 811 1007 </p>
+                        <p class="tel"><i class="fa fa-phone"></i>Tel: 031 829 1940 </p>
+                        <p class="email"><i class="fa fa-envelope"></i>Email: <a href="#">info@uphiweskills.co.za</a></p>
+                    </section><!--//widget-->
+                </aside>
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->

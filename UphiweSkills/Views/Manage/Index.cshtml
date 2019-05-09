@@ -1,0 +1,46 @@
+﻿@model UphiweSkills.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title float-left">Change your account settings</h1>
+            <div class="breadcrumbs float-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="/Manage/Index">Home</a><i class="fas fa-angle-right"></i></li>
+                    <li class="current">Manage</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                    
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>Password:</dt>
+                        <dd>
+                            [
+                            @if (Model.HasPassword)
+                            {
+                                @Html.ActionLink("Change your password", "ChangePassword")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Create", "SetPassword")
+                            }
+                            ]
+                        </dd>
+                    </dl>
+                </div>
+   
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->
+
+

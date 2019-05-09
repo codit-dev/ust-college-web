@@ -1,0 +1,75 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<UphiweSkills.Models.EventViewModel>
+@{
+    ViewBag.Title = "Events";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">Events</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="@Url.Action("Index","Home")">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">Events</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header> 
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="events-wrapper col-md-8 col-sm-7">
+                    @foreach (var eventObject in Model)
+                    {
+                        if(eventObject.StartTime == eventObject.EndTime)
+                        {
+                            eventObject.Month = "TBC";
+                            eventObject.Day = "";
+                        }
+
+                        <article class="events-item page-row has-divider clearfix">
+                            <div class="date-label-wrapper col-md-1 col-sm-1">
+                                <p class="date-label">
+                                    <span class="month">@eventObject.Month</span>
+                                    <span class="date-number">@eventObject.Day</span>
+                                </p>
+                            </div><!--//date-label-wrapper-->
+                            <div class="details col-md-11 col-sm-11">
+                                <h3 class="title">@Html.ActionLink(eventObject.Title, "EventDetails", new { id = eventObject.Id })<img class="img-thumbnail pull-right" src="@eventObject.ImageFilePath" style="height:135px; width:135px;" /></h3>
+                                <p class="meta"><span class="time"><i class="fa fa-clock-o"></i>@eventObject.StartTime - @eventObject.EndTime</span><span class="location"><i class="fa fa-map-marker"></i>@eventObject.Location</span></p>  
+                                <p class="desc block-with-text">@eventObject.Description</p>               
+                                        
+                            </div><!--//details-->
+                                   
+                        </article><!--//events-item-->
+                    }   
+                            
+
+                    <nav class="pagination-container text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Events", "Event", new { page }),
+                           new PagedListRenderOptions(){
+                               LinkToPreviousPageFormat = "&laquo;",
+                               LinkToNextPageFormat = "&raquo;",
+                               UlElementClasses = new List<string> { "pagination" },
+                               LiElementClasses = new List<string> { "page-item" },
+                               PageClasses = new List<string> { "page-link" }
+                           }
+                        )<!--//pagination-->
+                    </nav>
+                            
+                </div><!--//events-wrapper-->
+                <aside class="page-sidebar  col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1"> 
+                    @if (User.Identity.IsAuthenticated){
+                        if (User.IsInRole("Admin")){
+                            <section class="widget has-divider">
+                                <h3 class="title">Controls</h3>
+                                @Html.ActionLink("Add event", "AddEvent", "Event", new { @style = "font-size:15px;" })
+                            </section><!--//widget-->
+                        }
+                    }
+                </aside>
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page--> 
+</div><!--//content-->

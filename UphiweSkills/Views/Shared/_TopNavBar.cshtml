@@ -1,0 +1,71 @@
+﻿<!-- ******HEADER****** -->
+<header class="header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <ul class="social-icons col-md-6 col-12 d-none d-md-block">
+                    <li><a href="https://www.facebook.com/uphiwe.konke.1"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="row-end"><a href="https://twitter.com/UphiweSkills?lang=en"><i class="fab fa-twitter"></i></a></li>
+                </ul><!--//social-icons-->
+                <form class="col-md-6 col-12 search-form" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search the site...">
+                    </div>
+                    <button type="submit" class="btn btn-theme">Go</button>
+                </form>
+            </div><!--//row-->
+        </div>
+    </div><!--//to-bar-->
+    <div class="header-main container">
+        <div class="row">
+            <h1 class="logo col-md-4 col-12">
+                <a href="/Home/Index"><img id="logo" src="~/Content/Images/logo.png" width="230" height="63" alt="Logo"></a>
+            </h1><!--//logo-->
+            <div class="info col-md-8 col-12">
+                <ul class="menu-top float-right d-none d-md-block">
+                    <li class="divider">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="divider">@Html.ActionLink("FAQ", "FAQ", "Home")</li>
+                    <li class="divider">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+                <br />
+                <div class="contact float-right">
+                    <p class="phone"><i class="fas fa-phone"></i>Call us today on 031 811 1007</p>
+                    <p class="email"><i class="fas fa-envelope"></i><a href="mailto:info@uphiweskills.co.za">info@uphiweskills.co.za</a></p>
+                </div><!--//contact-->
+            </div><!--//info-->
+        </div><!--//row-->
+    </div><!--//header-main-->
+</header><!--//header-->
+
+<!-- ******NAV****** -->
+<div class="main-nav-wrapper">
+    <div class="container">
+        <nav class="main-nav navbar navbar-expand-md" role="navigation">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button><!--//nav-toggle-->
+
+            <div class="navbar-collapse collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("About","Home")">UST College</a>
+                            <a class="dropdown-item" href="@Url.Action("OurCourses","Home")">Our Courses</a>
+                            <a class="dropdown-item" href="@Url.Action("JobVacancies","Job")">Job Vacancies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Courses", "Course")">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Events", "Event")">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Gallery", "Home")">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a></li>
+                </ul><!--//nav-->
+            </div><!--//navabr-collapse-->
+        </nav><!--//main-nav-->
+    </div><!--//container-->
+</div><!--//main-nav container-->

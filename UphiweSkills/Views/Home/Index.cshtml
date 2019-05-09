@@ -1,0 +1,286 @@
+﻿@model UphiweSkills.Models.CoursesEventsViewModel
+@{
+    ViewBag.Title = "Welcome to UST College";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container home-page">
+    <div id="promo-slider" class="slider flexslider">
+        <ul class="slides">
+            @*<li>
+                <img src="~/Content/Images/slides/7.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Uphiwe Skills Training’s Interview at Vuma fm, 07 November 2018</span>
+                    <br />
+                    <span class="secondary clearfix">Listen live on 103.0 FM between 13h00-13h30pm with Ntobeko ‘The Voice’ Mabika. #YourLunchDate. <br /><a href="http://ndstream.net/vumafm/pc.htm"></a></span>
+                </p>
+            </li>*@
+            <li>
+                <img src="~/Content/Images/slides/3.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Join Uphiwekonke Skills Training</span>
+                    <br />
+                    <span class="secondary clearfix">Choose from a variety of courses</span>
+                </p>
+            </li>
+            <li>
+                <img src="~/Content/Images/slides/2.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Exemplary workmanship</span>
+                    <br />
+                    <span class="secondary clearfix">The aim of leadership should be to improve the performance of man and machine, to improve quality, to increase output, and simultaneously to bring pride of workmanship to people.</span>
+                </p>
+            </li>
+            <li>
+                <img src="~/Content/Images/slides/6.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Automotive Body Repair and Spray Painting</span>
+                    <br />
+                    <span class="secondary clearfix">Programme by MERSETA</span>
+                </p>
+            </li>
+            <li>
+                <img src="~/Content/Images/slides/1.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Roadworks and Construction</span>
+                    <br />
+                    <span class="secondary clearfix">We give you the opportunity to balance your practical skills with the essential knowledge needed to earn a formal qualification in roadworks and construction, without formal education becoming an impassable barrier.</span>
+                </p>
+            </li>
+            <li>
+                <img src="~/Content/Images/slides/5.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Come to our Open Days</span>
+                    <br />
+                    <span class="secondary clearfix">Discover where your talents lie</span>
+                </p>
+            </li>
+            <li>
+                <img src="~/Content/Images/slides/4.jpg" alt="" />
+                <p class="flex-caption">
+                    <span class="main">Follow what you are genuinely passionate about</span>
+                    <br />
+                    <span class="secondary clearfix">When you're surrounded by people who share a passionate commitment around a common purpose, anything is possible.</span>
+                </p>
+            </li>
+        </ul><!--//slides-->
+    </div><!--//flexslider-->
+    <section class="promo box box-dark">
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <h1 class="section-heading">Why UST College?</h1>
+                <p>We boast of a highly experienced and sought after team, with more than 20 years experience in the skills training development industry. We believe that empowering the human mind by developing skills makes a life changing difference.</p>
+            </div>
+            <div class="col-lg-3 col-12">
+                <a class="btn btn-cta" href="@Url.Action("Contact","Home")"><i class="fas fa-info-circle"></i>Inquire</a>
+            </div>
+        </div><!--//row-->
+    </section><!--//promo-->
+    <div class="row cols-wrapper">
+        <div class="col-lg-3 col-12">
+            <section class="events">
+                <h1 class="section-heading text-highlight"><span class="line">Events</span></h1>
+                <div class="section-content">
+                           
+                @{ 
+                    foreach (var eventObject in Model.Events)
+                    {
+                        <div class="event-item">
+                            <p class="date-label">
+                                <span class="month">@eventObject.Month</span>
+                                <span class="date-number">@eventObject.Day</span>
+                            </p>
+                            <div class="details">
+                                <h2 class="title">@Html.ActionLink(eventObject.Title, "EventDetails", "Event",  new { id = eventObject.Id }, null)</h2>
+                                <p class="time"><i class="far fa-clock"></i>@eventObject.StartTime - @eventObject.EndTime</p>
+                                <p class="location"><i class="fas fa-map-marker-alt"></i>@eventObject.Location</p>
+                            </div><!--//details-->
+                        </div><!--event-item--> 
+                    }
+                }
+                    <a class="read-more" href="@Url.Action("Events","Event")">All events<i class="fas fa-chevron-right"></i></a>
+                    @*@Html.ActionLink("View all", "Events", "Event", new { @class = "read-more"})*@
+                </div><!--//section-content-->
+            </section><!--//events-->
+        </div><!--//col-md-3-->
+        <div class="col-lg-6 col-12">
+            <section class="course-finder">
+                <h1 class="section-heading text-highlight"><span class="line">Course Finder</span></h1>
+                <div class="section-content">
+                    @using (Html.BeginForm("CourseDetails", "Course", FormMethod.Get, new { @class = "course-finder-form" }))
+                    {
+                        <div class="form-row">
+                            <div class="col-md-5 col-12 subject">
+                                @Html.DropDownListFor(m => m.Id, new SelectList(Model.Courses, "Id", "CourseName"), "--Select a course--", new { @class = "form-control subject"})
+                            </div>
+                            <div class="col-md-7 col-12 keywords">
+                                <input class="form-control float-left" type="text" placeholder="Search keywords" />
+                                <button type="submit" class="btn btn-theme"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    }<!--//course-finder-form-->
+                    <a class="read-more" href="@Url.Action("Courses","Course")">View all our courses<i class="fas fa-chevron-right"></i></a>
+                </div><!--//section-content-->
+            </section><!--//course-finder-->
+            <section class="video">
+                <h1 class="section-heading text-highlight"><span class="line">Video Gallery</span></h1>
+                <div class="section-content">
+                    <figure id="video_player">
+                        <video controls poster="~/Content/videos/testimonials/test_cover1.jpg" controlsList="nodownload">
+                            <source src="~/Content/videos/testimonials/testimonial_01.mp4" type="video/mp4">
+                        </video>
+                        <figcaption>
+                            <a href="~/Content/videos/testimonials/testimonial_02.mp4"><img src="~/Content/videos/testimonials/test_cover2.jpg" alt="Nambia Timelapse 1"></a>
+                            <a href="~/Content/videos/testimonials/testimonial_03.mp4"><img src="~/Content/videos/testimonials/test_cover3.jpg" alt="Nambia Timelapse 2"></a>
+                            <a href="~/Content/videos/testimonials/testimonial_04.mp4"><img src="~/Content/videos/testimonials/test_cover4.jpg" alt="Nambia Timelapse 3"></a>
+                        </figcaption>
+                    </figure>
+                </div>
+            </section><!--//video-->
+        </div>
+        <div class="col-lg-3 col-12">
+            <section class="links">
+                <h1 class="section-heading text-highlight"><span class="line">Quick Links</span></h1>
+                <div class="section-content">
+                    <p><a href="@Url.Action("About","Home")"><i class="fa fa-caret-right"></i>About</a></p>
+                    <p><a href="@Url.Action("Gallery","Home")"><i class="fa fa-caret-right"></i>Gallery</a></p>
+                    <p><a href="@Url.Action("JobVacancies","Home")"><i class="fa fa-caret-right"></i>Job Vacancies</a></p>
+                    <p><a href="@Url.Action("Contact","Home")"><i class="fa fa-caret-right"></i>Contact</a></p>
+                </div><!--//section-content-->
+            </section><!--//links-->
+            <section class="testimonials">
+                <h1 class="section-heading text-highlight"><span class="line"> Testimonials</span></h1>
+                <div class="carousel-controls">
+                    <a class="prev" href="#testimonials-carousel" data-slide="prev"><i class="fas fa-caret-left"></i></a>
+                    <a class="next" href="#testimonials-carousel" data-slide="next"><i class="fas fa-caret-right"></i></a>
+                </div><!--//carousel-controls-->
+                <div class="section-content">
+                    <div id="testimonials-carousel" class="testimonials-carousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item item active">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>I know that I can rely on my staff being trained to an excellent standard. Great investment indeed!
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Mabuyi Gumede</span><br /><span class="title">Assistant Trainer</span></p>
+                                    <img class="profile" src="~/Content/Images/testimonials/IMG-4.png" alt="" />
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>The greatest benefit of short courses are that they are practical. They allow you to continue your current lifestyle while improving your skills.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Frank Matara</span><br /><span class="title">Foreman in training</span></p>
+                                    <img class="profile" src="~/Content/Images/testimonials/IMG-7.png" alt="" />
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>I partook in the Effective Communication development program. I am pleased to say that after completing it, I went for an interview and got the job!
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Grace Dlamini</span><br /><span class="title">Project Manager</span></p>
+                                    @*<img class="profile" src="~/Content/Images/testimonials/IMG-1.png" alt="" />*@
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>I found the program extremely refreshing and useful. Thanks to Uphiwekonke Skills Training, I’ve earned myself a management position! 
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Senzo Mpungose</span><br /><span class="title">Financial Manager</span></p>
+                                    @*<img class="profile" src="~/Content/Images/testimonials/IMG-2.png" alt="" />*@
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>I really admired the motivation and enthusiasm of the trainer. I would definitely recommend the Leadership and Supervision development program to others.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Mandla Vilakazi</span><br /><span class="title">Entrepreneur</span></p>
+                                    @*<img class="profile" src="~/Content/Images/testimonials/IMG-3.png" alt="" />*@
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>I appreciate the fact that Uphiwekonke also incorporates practical exercises which everyone can relate to. Thanks for getting me off the starting blocks.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Zanele Mkhize</span><br /><span class="title">-</span></p>
+                                    @*<img class="profile" src="~/Content/Images/testimonials/IMG-5.png" alt="" />*@
+                                </div>
+                            </div><!--//item-->
+                            <div class="carousel-item item">
+                                <div class="quote-padder">
+                                    <blockquote class="quote">
+                                        <p>
+                                            <i class="fas fa-quote-left"></i>
+                                            I needed to improve my self-confidence during interviews and presentations, and Uphiwe Skills Training allowed me to do just that.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                                <div class="source">
+                                    <p class="people"><span class="name">Swazi Khuzwayo</span><br /><span class="title">Health Inspector</span></p>
+                                    @*<img class="profile" src="~/Content/Images/testimonials/IMG-6.png" alt="" />*@
+                                </div>
+                            </div><!--//item-->
+
+                        </div><!--//carousel-inner-->
+                    </div><!--//testimonials-carousel-->
+                </div><!--//section-content-->
+            </section><!--//testimonials-->
+        </div><!--//col-md-3-->
+    </div><!--//cols-wrapper-->
+</div><!--//content-->
+
+@section scripts
+{
+<script type="text/javascript">
+
+    var video_player = document.getElementById("video_player"), links = video_player.getElementsByTagName('a');
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = handler;
+    }
+
+    function handler(e) {
+        e.preventDefault();
+        videotarget = this.getAttribute("href");
+        filename = videotarget.substr(0, videotarget.lastIndexOf('.')) || videotarget;
+        video = document.querySelector("#video_player video");
+        video.removeAttribute("controls");
+        video.removeAttribute("poster");
+        source = document.querySelectorAll("#video_player video source");
+        source[0].src = filename + ".mp4";
+        video.load();
+        video.play();
+        //video.setAttribute("controls","");
+    }
+
+</script>
+}
+

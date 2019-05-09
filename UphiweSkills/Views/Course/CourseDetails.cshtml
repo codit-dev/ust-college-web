@@ -1,0 +1,105 @@
+﻿@model UphiweSkills.Models.CourseDetailsViewModel
+@{
+    ViewBag.Title = Model.CourseName;
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">@Model.CourseName</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="index.html">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li><a href="/Home/Courses">Courses</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">@Model.CourseName</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="course-wrapper col-md-6 col-sm-6">
+                    <article class="course-item">
+                        <p class="featured-image page-row"><img class="img-responsive" src= "@Url.Content(@Model.HeaderImageUrl)" alt="" /></p>
+                        <div class="page-row box box-border">
+                            <ul class="list-unstyled no-margin-bottom">
+                                <li><strong>Course Code: </strong> <em>@Model.CourseCode</em></li>
+                                <li><strong>Duration: </strong> <em>@Model.Duration</em></li>
+                                <li><strong>Level: </strong> <em>@Model.Level</em></li>
+                                <li><strong>Location: </strong> <em>@Model.Location</em></li>
+                            </ul>
+                        </div><!--//page-row-->
+                        <div class="page-row">
+                            <h5>Course structure</h5>
+                            <p>@Html.Raw(Model.CourseStructure)</p>
+
+                        </div><!--//page-row-->
+                        <div class="tabbed-info page-row">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Aim</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Entry requirements</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Career Opportunities</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Accreditation</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <p>@Html.Raw(Model.Aim)</p>
+
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <p>@Html.Raw(Model.EntranceRequirements)</p>
+                                            
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <p>@Html.Raw(Model.CareerOpportunities)</p>
+
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <p>@Model.Accreditation</p>
+
+                                </div>
+                            </div>
+                        </div><!--//tabbed-info-->
+                    </article><!--//course-item-->
+                </div><!--//course-wrapper-->
+                @*<aside class="page-sidebar  col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1">
+                    <section class="widget has-divider">
+                        <h3 class="title">Why College Green Online</h3>
+                        <p>Donec pulvinar arcu lacus, vel aliquam libero scelerisque a. Cras mi tellus, vulputate eu eleifend at, consectetur fringilla lacus. Nulla ut purus.</p>
+                        <a class="btn btn-theme" href="#"><i class="fa fa-download"></i>Download prospectus</a>
+                    </section><!--//widget-->
+                    <section class="widget has-divider">
+                        <h3 class="title">Enquire about this course</h3>
+                        <p>Donec pulvinar arcu lacus, vel aliquam libero scelerisque a. Cras mi tellus, vulputate eu eleifend at, consectetur fringilla lacus. Nulla ut purus.</p>
+                        <p class="tel"><i class="fa fa-phone"></i>Tel: 0800 123 4567</p>
+                        <p class="email"><i class="fa fa-envelope"></i>Email: <a href="#">enquires@website.com</a></p>
+                    </section><!--//widget-->
+                    <section class="widget has-divider">
+                        <h3 class="title">Related courses</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="fa fa-book"></i> Ut enim ad minim veniam</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Lorem ipsum dolor sit amet</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Cras et sapien rhoncus</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Praesent ut turpis feugiat</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Aenean interdum iaculis odio</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Morbi in malesuada nibh</a></li>
+                            <li><a href="#"><i class="fa fa-book"></i> Fusce a ligula in velit</a></li>
+                        </ul>
+                    </section><!--//widget-->
+                    <section class="widget has-divider">
+                        <h3 class="title">Apply Online</h3>
+                        <p>Donec pulvinar arcu lacus, vel aliquam libero scelerisque a. Cras mi tellus, vulputate eu eleifend at, consectetur fringilla lacus. Nulla ut purus.</p>
+                        <p class="promo-badge">
+                            <a class="OliveDrab" href="#">
+                                <span class="percentage">20% <span class="off">OFF</span></span>
+                                <br>
+                                <span class="desc">Online application</span>
+                            </a>
+                        </p>
+                    </section><!--//widget-->
+                </aside>*@
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->

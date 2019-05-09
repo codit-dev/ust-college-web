@@ -1,0 +1,125 @@
+﻿@model UphiweSkills.Models.AddEventViewModel
+@{
+    ViewBag.Title = "Add Event";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">Add event</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="/Home/Index">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">Add event</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+        @using (Html.BeginForm("AddEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class='col-md-6 col-sm-12'>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title)
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter event title", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Location)
+                        @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = "Enter event location", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Location, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter event description", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.EventDateTime)
+                        <div class='input-group date' id='datetimepicker1'>
+                            @Html.TextBoxFor(m => m.EventDateTime, new { @class = "form-control", placeholder = "Click on the icon to enter date and time", id = "DateTime" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Duration)
+                        @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", placeholder = "Enter event duration in hours and minutes, eg: 12:22", id = "Duration" })
+                    </div>
+                    <div class="form-group">
+                        <!-- image-preview-filename input [CUT FROM HERE]-->
+                        <label for="EventImage">Image</label>
+                        <div class="input-group image-preview">
+                            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                            <span class="input-group-btn">
+                                <!-- image-preview-clear button -->
+                                <button id="ClearImage" type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                    <span class="glyphicon glyphicon-remove"></span> Clear
+                                </button>
+                                <!-- image-preview-input -->
+                                <div class="btn btn-default image-preview-input">
+                                    <span class="glyphicon glyphicon-folder-open"></span>
+                                    <span class="image-preview-input-title">Browse</span>
+                                    <input id="EventImage" type="file" accept="image/png, image/jpeg, image/gif" name="EventImage" /> 
+                                </div>
+                            </span>
+                        </div><!-- /input-group image-preview [TO HERE]-->
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                @Html.CheckBoxFor(m => m.SignUpEnabled)
+                                Sign-up enabled
+                            </label>
+                        </div>
+                    </div>
+
+                            
+
+                    <button type="submit" class="btn btn-theme">Save event</button>
+                </div>
+            </div>
+        }
+        </div><!--/page-content-->
+    </div><!--//page-->
+</div><!--//content-->
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+        // Sets format for datetimepicker
+        $('#datetimepicker1').datetimepicker({
+            format: 'D/MMM/YYYY HH:mm'
+        });
+
+        // Adds image size validation 
+        // TODO: add filetype validation 
+        var uploadField = document.getElementById("EventImage");
+        var durationField = document.getElementById("Duration");
+        var dateTimeField = document.getElementById("DateTime");
+        var clearImageButton = document.getElementById("ClearImage");
+                
+        uploadField.onchange = function () {
+            if (this.files[0].size > 650000) {
+                alert("Image size is too big! Make sure it is less than 650 Kb.");
+                this.value = "";
+            }
+                           
+            // adds required attribute to datetime and duration if event image is uploaded
+            if (this.value !== "") {
+                    durationField.setAttribute("required", "required");
+                    dateTimeField.setAttribute("required", "required");
+            } 
+        };
+
+        // removes required attribute from datetime and duration if event image is not uploaded
+        clearImageButton.onclick = function () {
+            durationField.removeAttribute("required");
+            dateTimeField.removeAttribute("required");
+        };
+    });
+    </script>
+}

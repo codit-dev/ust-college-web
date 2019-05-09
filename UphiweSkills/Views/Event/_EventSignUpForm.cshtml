@@ -1,0 +1,56 @@
+﻿@model UphiweSkills.Models.EventDetailsViewModel
+
+@using (Html.BeginForm("EventSignUp", "Event", new { id = Model.Id }, FormMethod.Post))
+{
+    //@Html.AntiForgeryToken()
+    <!--//button-->
+    <a href="#@Model.Id" role="button" class="btn btn-cta" data-toggle="modal">
+        <span class="btn-label"><i class="fa fa-play-circle"></i></span>Sign up
+    </a>
+    <!--//button-->
+
+    <!--modal-->
+    <div id="@Model.Id" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>@Model.Title</h5>
+                    <p class="meta"><span class="time"><i class="fa fa-clock-o"></i>@Model.StartTime - @Model.EndTime</span></p>
+                    <p><span class="location"><i class="fa fa-map-marker"></i>@Model.Location</span></p><br />
+
+                    <div class="form-group name">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "name", placeholder = "Enter your name", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                    </div><!--//form-group-->
+                    <div class="form-group surname">
+                        @Html.LabelFor(m => m.Surname)
+                        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", id = "surname", placeholder = "Enter your surname", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Surname, null, new { @class = "text-danger" })
+                    </div><!--//form-group-->
+                    <div class="form-group email">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "email", placeholder = "Enter your email", type = "email", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+                    </div><!--//form-group-->
+                    <div class="form-group contact">
+                        @Html.LabelFor(m => m.ContactNumber)
+                        @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control", id = "contact", placeholder = "Enter your contact number", required = "required" })
+                        @Html.ValidationMessageFor(m => m.ContactNumber, null, new { @class = "text-danger" })
+                    </div><!--//form-group-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-theme" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//modal-->
+} 
+
+    

@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title pull-left">About</h1>
+            <div class="breadcrumbs pull-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="/Home/Index">Home</a><i class="fa fa-angle-right"></i></li>
+                    <li class="current">About</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <article class="welcome col-md-8 col-sm-7">
+                    <h3 class="title">Welcome to Uphiwekonke Skills Training College</h3>
+                    <p>Uphiwekonke Skills Training (UST) College is a division of Uphiwekonke Holdings(Pty) Ltd (UH). UST was established as a strategic company whose aim is to champion the skills & development gap that exist in South Africa and be a vehicle that can reach out to the outskirts where training programmes are hard to come by.<br /><br />We are a training provider having our core business as a training & skills development company. We as UST are accredited with Fiber Processes & Manufacturing SETA (FP&M SETA), Construction (CETA), Services CETA, and MerSETA.</p>
+                    <h5>Services</h5>
+                    <ul class="custom-list-style">
+                        <li><i class="fa fa-check"></i>Skills Development <i class="fa fa-info" data-toggle="tooltip" data-placement="right" data-html="true" title="Skills programme<br />Learnership<br />RPL"></i></li>
+                        <li><i class="fa fa-check"></i>Artisan Development <i class="fa fa-info" data-toggle="tooltip" data-placement="right" data-html="true" title="Apprenticeship<br />ARPL"></i></li>
+                        <li><i class="fa fa-check"></i>Entrepreneurial Development <i class="fa fa-info" data-toggle="tooltip" data-placement="right" data-html="true" title="Start a small business<br />Grow your business"></i></li>
+                        <li><i class="fa fa-check"></i>Candidacy Development </li>
+                    </ul>
+
+                    @*<blockquote class="custom-quote">
+                        <p><i class="fa fa-quote-left"></i>People rarely succeed unless they have fun in what they are doing.</p>
+                        <p class="people"><span class="name">Dale Carnegie</span><br><span class="title">Writer</span></p>
+                    </blockquote>*@
+                    
+                    <h5>Vision</h5>
+                    <p>
+                        UST College aims to pioneer market-related skills training needs, for the economic and socio-economic transformation of Africans and to expand our footprint nationally and Internationally.
+                    </p> 
+
+                    <h5>Mission</h5>
+                    <p>
+                        Our mission is to develop and empower the communities and establishing partnerships for the purpose of advancing the human mind and hands, with skills that will make a difference in their lives.
+                    </p>  
+
+                    <h5>Values</h5>
+                    <ul>
+                        <li><strong>Integrity:</strong> Honouring the calling of the education and training profession in rendering our services to our clients to the best of our abilities and lead by example.</li>
+                        <li><strong>Pioneering:</strong> Responsive to new trends, industrial demands and training needs through innovation.</li>
+                        <li><strong>Excellence:</strong> We hold high expectations of each other and ourselves, and of the quality finishing of our work.</li>
+                    </ul>    
+
+                    <h5>Human Resources</h5>
+                    <p>
+                        Our team is made up of skilled and experienced personnel, whose experience in the industry has ensured high growth and client satisfaction, the team has conservatively embarked on a major growth drive, focusing on providing the best turnaround times for the clients. The quality of their work and speedily delivery is well received by clients.
+                    </p> 
+                            
+                    <br />     
+                    <div class="container-fluid">
+                        <div id="accreditations"class="row">
+                            <img src="~/Content/Images/accreditations/ceta.png" alt="CETA">
+                            <img src="~/Content/Images/accreditations/merseta.png" alt="MerSETA">
+                            <img src="~/Content/Images/accreditations/saqa.png" alt="Saqa">
+                            <img src="~/Content/Images/accreditations/servicesseta.png" alt="Services SETA">
+                            <img src="~/Content/Images/accreditations/fpmseta.png" alt="FP&M SETA">
+                        </div>
+                    </div>
+                </article><!--//page-content-->
+                <aside class="page-sidebar  col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1">
+                    
+                    <section class="widget">
+                        <h3 class="title">Contact</h3>
+                        <p>We’d love to hear from you. Feel free to contact us! </p>
+                        <p class="tel"><i class="fa fa-phone"></i>Tel: 031 811 1007 </p>
+                        <p class="tel"><i class="fa fa-phone"></i>Tel: 031 829 1940 </p>
+                        <p class="email"><i class="fa fa-envelope"></i>Email: <a href="#">info@uphiweskills.co.za</a></p>
+                    </section><!--//widget-->
+                    <section class="widget">
+                        <img class="img-responsive" src="~/Content/Images/banner.jpg" alt="" />
+                    </section><!--//widget-->
+                </aside>
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function(){
+            $('#accreditations').slick({
+                speed: 10000,
+                autoplay: true,
+                autoplaySpeed: 0,
+                cssEase: 'linear',
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                variableWidth: true
+            });
+        });
+    </script>
+}
+
